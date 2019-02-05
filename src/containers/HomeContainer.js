@@ -98,7 +98,7 @@ class Home extends Component {
 					_model.value === this.state.model &&
 					_model.country === this.state.modelCountry
 			);
-			const dataset = modelOptions.find(
+			const dataset = datasetOptions.find(
 				_dataset =>
 					_dataset.value === this.state.dataset &&
 					_dataset.country === this.state.datasetCountry
@@ -145,7 +145,7 @@ class Home extends Component {
 
 		if (datasetCountry !== currentLocation)
 			tmpCodes.push(
-				`curl -o ./dataset.tfrecord ${datasetCountry}-host:model-${
+				`curl -o ./dataset.tfrecord ${datasetCountry}-host:dataset-${
 					dataset.value
 				}`
 			);
