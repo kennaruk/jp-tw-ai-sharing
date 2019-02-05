@@ -35,7 +35,9 @@ export default ({
 			}
 		>
 			{options.map(({ value, text }) => (
-				<Option value={value}>{text}</Option>
+				<Option value={value} key={value}>
+					{text}
+				</Option>
 			))}
 		</Select>
 	);

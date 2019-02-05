@@ -8,10 +8,10 @@ class Home extends Component {
 	render() {
 		return (
 			<div>
-				<Col span={12}>
+				<Col span={12} style={{ height: "100vh" }}>
 					<PanelContainer />
 				</Col>
-				<Col span={12}>
+				<Col span={12} style={{ height: "100vh" }}>
 					<ResultContainer />
 				</Col>
 			</div>

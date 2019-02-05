@@ -3,6 +3,10 @@ import { Row, Col } from "antd";
 
 import RadioGroup from "../components/RadioGroup";
 import Dropdown from "../components/Dropdown";
+import Button from "../components/Button";
+
+import "./styles/PanelContainer.css";
+
 /*
 Mock Data
 */
@@ -33,16 +37,16 @@ class PanelContainer extends Component {
 	render() {
 		return (
 			<div>
-				<Row> App Name </Row>
+				<Row className="panel-container"> App Name </Row>
 
-				<Row> 1. Choose model</Row>
+				<Row className="panel-container"> 1. Choose model</Row>
 
-				<Row>
+				<Row className="panel-container">
 					from <RadioGroup options={countryOptions} />
 				</Row>
 
-				<Row>
-					Model
+				<Row className="panel-container">
+					<b>Model</b>
 					<Dropdown
 						placeholder="Select model"
 						options={modelOptions}
@@ -50,13 +54,13 @@ class PanelContainer extends Component {
 					/>
 				</Row>
 
-				<Row> 2. Choose dataset</Row>
+				<Row className="panel-container"> 2. Choose dataset</Row>
 
-				<Row>
+				<Row className="panel-container">
 					from <RadioGroup options={countryOptions} />
 				</Row>
 
-				<Row>
+				<Row className="panel-container">
 					Dataset
 					<Dropdown
 						placeholder="Select dataset"
@@ -65,7 +69,12 @@ class PanelContainer extends Component {
 					/>
 				</Row>
 
-				<Row> generate button</Row>
+				<Row type="flex">
+					<Col span={16} />
+					<Col span={8} order={1}>
+						<Button text="Generate" />
+					</Col>
+				</Row>
 			</div>
 		);
 	}
