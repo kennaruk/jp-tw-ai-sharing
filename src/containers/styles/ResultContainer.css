@@ -1,0 +1,39 @@
+.result-mirror {
+	background: #00303f;
+	text-shadow: 0 1px 1px #111111;
+	color: #fff;
+	font-family: Courier, monospace;
+	height: 100%;
+}
+
+.result-status-container {
+	height: 19%;
+	border-bottom: 1px solid #ffffff;
+}
+
+.result-status-container .header {
+	font-weight: bold;
+	text-align: end;
+
+	padding-right: 2%;
+}
+
+.result-code-container {
+	height: 40.5%;
+	border-bottom: 1px solid #ffffff;
+}
+
+.result-code-container .header {
+	font-weight: bold;
+	padding-top: 4%;
+	padding-left: 4%;
+	padding-bottom: 4%;
+}
+
+.result-code-container .code {
+	padding-left: 4%;
+}
+
+.result-status {
+	padding-left: 2%;
+}

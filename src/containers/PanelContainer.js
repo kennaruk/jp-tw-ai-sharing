@@ -46,11 +46,11 @@ class PanelContainer extends Component {
 		return (
 			<div>
 				<Row className="panel-header panel-container" justify="center">
-					<Col>App Name </Col>
+					<Col>ABCI Resources sharing code generator</Col>
 				</Row>
 
 				<Row>
-					<h1 style={headerStyles}>1. Choose model</h1>
+					<h2 style={headerStyles}>1. Choose model</h2>
 				</Row>
 
 				<Row className="panel-container">
@@ -77,7 +77,7 @@ class PanelContainer extends Component {
 				</Row>
 
 				<Row>
-					<h1 style={headerStyles}>2. Choose dataset</h1>
+					<h2 style={headerStyles}>2. Choose dataset</h2>
 				</Row>
 
 				<Row className="panel-container">

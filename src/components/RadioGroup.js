@@ -16,9 +16,6 @@ export default ({ options, ...props }) => {
 		<Radio.Group defaultValue={options[0].value} buttonStyle="solid" {...props}>
 			{options.map(({ value, text }) => (
 				<Radio.Button value={value} key={value}>
-					{
-						//TODO: add icon
-					}
 					{text}
 				</Radio.Button>
 			))}
