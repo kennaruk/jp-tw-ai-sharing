@@ -8,7 +8,10 @@ class Home extends Component {
 	render() {
 		return (
 			<div>
-				<Col span={12} style={{ height: "100vh" }}>
+				<Col
+					span={12}
+					style={{ height: "100vh", borderRight: "1px solid #e8e8e8" }}
+				>
 					<PanelContainer />
 				</Col>
 				<Col span={12} style={{ height: "100vh" }}>

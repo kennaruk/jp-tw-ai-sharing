@@ -7,10 +7,17 @@ export default ({
 	size = null,
 	loading = false,
 	text = "default",
-	onClick = null
+	onClick = null,
+	...props
 }) => {
 	return (
-		<Button type={type} size={size} loading={loading} onClick={onClick}>
+		<Button
+			type={type}
+			size={size}
+			loading={loading}
+			onClick={onClick}
+			{...props}
+		>
 			{text}
 		</Button>
 	);

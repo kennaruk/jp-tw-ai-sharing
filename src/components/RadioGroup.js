@@ -11,9 +11,9 @@ import { Radio } from "antd";
 		text: "xxx"
 	}]
 */
-export default ({ options }) => {
+export default ({ options, ...props }) => {
 	return (
-		<Radio.Group defaultValue={options[0].value} buttonStyle="solid">
+		<Radio.Group defaultValue={options[0].value} buttonStyle="solid" {...props}>
 			{options.map(({ value, text }) => (
 				<Radio.Button value={value} key={value}>
 					{

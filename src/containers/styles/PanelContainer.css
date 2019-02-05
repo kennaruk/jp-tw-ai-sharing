@@ -1,7 +1,21 @@
 .panel-container {
-	/* vertical-align: middle; */
-	/* height: 12.5vh;
-	/* padding-top: 12.5vh; */
-	/* display: table-cell;
-	vertical-align: middle; */
+	padding-top: 3vh;
+	padding-bottom: 3vh;
+}
+
+.panel-header {
+	text-align: center;
+	z-index: 10;
+	-webkit-box-shadow: 0 2px 8px #f0f1f2;
+}
+
+.panel-item {
+	text-align: end;
+	vertical-align: middle;
+	height: 100%;
+	line-height: 100%;
+	font-weight: bold;
+
+	padding-right: 3%;
+	padding-left: 3%;
 }
