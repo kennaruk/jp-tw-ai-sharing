@@ -30,7 +30,7 @@ class Home extends Component {
 		super();
 		this.state = {
 			status: {
-				location: "JAPAN <Location detected>",
+				location: "JAPAN <Location auto detected>",
 				model: {
 					id: null,
 					text: null,
@@ -160,6 +160,29 @@ class Home extends Component {
 		});
 	};
 
+	onLocationChangeHandler = event => {
+		this.setState({
+			status: {
+				location:
+					this.state.status.location === "JAPAN <Location auto detected>"
+						? "TAIWAN <Location auto detected>"
+						: "JAPAN <Location auto detected>",
+				model: {
+					id: null,
+					text: null,
+					country: null
+				},
+				dataset: {
+					id: null,
+					text: null,
+					country: null
+				},
+				modelCountry: null,
+				datasetCountry: null
+			}
+		});
+	};
+
 	render() {
 		const functions = {
 			onModelCountryChange: this.onModelCountryChange,
@@ -184,6 +207,7 @@ class Home extends Component {
 						{...this.state.status}
 						japanCodes={this.state.japanCodes}
 						taiwanCodes={this.state.taiwanCodes}
+						onLocationChangeHandler={this.onLocationChangeHandler}
 					/>
 				</Col>
 			</div>

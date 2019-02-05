@@ -32,7 +32,10 @@ class ResultContainer extends Component {
 					>
 						Result Status
 					</Row>
-					<Row>
+					<Row
+						style={{ cursor: "pointer" }}
+						onClick={this.props.onLocationChangeHandler}
+					>
 						<Col className="header" span={8}>
 							Current Location:
 						</Col>
