@@ -178,7 +178,9 @@ class Home extends Component {
 					country: null
 				},
 				modelCountry: null,
-				datasetCountry: null
+				datasetCountry: null,
+				japanCodes: [],
+				taiwanCodes: []
 			}
 		});
 	};
