@@ -3,10 +3,6 @@ import React from "react";
 import { Select } from "antd";
 const Option = Select.Option;
 
-function handleChange(value) {
-	console.log(`selected ${value}`);
-}
-
 function handleBlur() {
 	console.log("blur");
 }
@@ -19,7 +15,8 @@ export default ({
 	placeholder,
 	options,
 	width = 200,
-	optionFilterProp = "children"
+	optionFilterProp = "children",
+	...props
 }) => {
 	return (
 		<Select
@@ -27,9 +24,9 @@ export default ({
 			style={{ width }}
 			placeholder={placeholder}
 			optionFilterProp={optionFilterProp}
-			onChange={handleChange}
 			onFocus={handleFocus}
 			onBlur={handleBlur}
+			{...props}
 			filterOption={(input, option) =>
 				option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
 			}

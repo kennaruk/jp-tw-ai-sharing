@@ -23,16 +23,6 @@ const countryOptions = [
 	}
 ];
 
-const modelOptions = [
-	{ value: "id-1", text: "FACE RECOGNITION - A Type" },
-	{ value: "id-2", text: "FACE RECOGNITION - B Type" }
-];
-
-const datasetOptions = [
-	{ value: "id-1", text: "THAI FACE DATASET - 10GB" },
-	{ value: "id-2", text: "JAPANESE FACE DATASET - 28GB" }
-];
-
 const headerStyles = {
 	marginLeft: "3%",
 	marginTop: "3%"
@@ -42,7 +32,13 @@ const rightContainerStyles = {
 	paddingRight: "3%"
 };
 class PanelContainer extends Component {
+	constructor(props) {
+		super(props);
+	}
+
 	render() {
+		console.log(this.props);
+
 		return (
 			<div>
 				<Row className="panel-header panel-container" justify="center">
@@ -58,7 +54,11 @@ class PanelContainer extends Component {
 						from
 					</Col>
 					<Col span={18} style={rightContainerStyles}>
-						<RadioGroup options={countryOptions} width="100%" />
+						<RadioGroup
+							onChange={this.props.onModelCountryChange}
+							options={countryOptions}
+							width="100%"
+						/>
 					</Col>
 				</Row>
 
@@ -69,9 +69,11 @@ class PanelContainer extends Component {
 					<Col span={18} style={rightContainerStyles}>
 						<Dropdown
 							placeholder="Select model"
-							options={modelOptions}
+							options={this.props.getModelsByCountry(this.props.modelCountry)}
 							width="100%"
 							block
+							value={this.props.model}
+							onChange={this.props.onModelChange}
 						/>
 					</Col>
 				</Row>
@@ -85,7 +87,11 @@ class PanelContainer extends Component {
 						from
 					</Col>
 					<Col span={18} style={rightContainerStyles}>
-						<RadioGroup options={countryOptions} width="100%" />
+						<RadioGroup
+							options={countryOptions}
+							onChange={this.props.onDatasetCountryChange}
+							width="100%"
+						/>
 					</Col>
 				</Row>
 
@@ -94,18 +100,31 @@ class PanelContainer extends Component {
 						Dataset
 					</Col>
 					<Col span={18} style={rightContainerStyles}>
-						<Dropdown
-							placeholder="Select dataset"
-							options={datasetOptions}
-							width="100%"
-						/>
+						{this.props.getDatasetByCountry ? (
+							<Dropdown
+								placeholder="Select dataset"
+								options={this.props.getDatasetByCountry(
+									this.props.datasetCountry
+								)}
+								width="100%"
+								value={this.props.dataset}
+								onChange={this.props.onDatasetChange}
+							/>
+						) : (
+							""
+						)}
 					</Col>
 				</Row>
 
 				<Row type="flex">
 					<Col span={16} />
 					<Col span={8} order={1} style={rightContainerStyles}>
-						<Button text="Generate" block />
+						<Button
+							text="Generate"
+							block
+							onClick={this.props.onGenerateSubmit}
+							loading={this.props.generateLoading}
+						/>
 					</Col>
 				</Row>
 			</div>
