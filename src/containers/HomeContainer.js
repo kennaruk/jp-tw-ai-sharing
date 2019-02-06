@@ -120,8 +120,9 @@ class Home extends Component {
 	generateCode = () => {
 		//mock code
 		const location = this.state.status.location;
+		console.log("this.state.status.location", this.state.status.location);
 		const currentLocation =
-			location === "JAPAN <Location detected>" ? "jp" : "tw";
+			location === "JAPAN <Location auto detected>" ? "jp" : "tw";
 
 		const codesVariableName =
 			currentLocation === "jp" ? "japanCodes" : "taiwanCodes";
@@ -178,10 +179,10 @@ class Home extends Component {
 					country: null
 				},
 				modelCountry: null,
-				datasetCountry: null,
-				japanCodes: [],
-				taiwanCodes: []
-			}
+				datasetCountry: null
+			},
+			japanCodes: [],
+			taiwanCodes: []
 		});
 	};
 
