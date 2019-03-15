@@ -1,11 +1,14 @@
 import React, { Component } from "react";
-import { Row, Col } from "antd";
+import { Row, Col, Input, Typography } from "antd";
 
 import RadioGroup from "../components/RadioGroup";
 import Dropdown from "../components/Dropdown";
 import Button from "../components/Button";
 
 import "./styles/PanelContainer.css";
+
+const Search = Input.Search;
+const { Text } = Typography;
 
 /*
 Mock Data
@@ -31,6 +34,12 @@ const headerStyles = {
 const rightContainerStyles = {
 	paddingRight: "3%"
 };
+
+// const verticalAlignCenterStyles = {
+// 	display: "inline-flex",
+// 	justifyContent: "center",
+// 	alignItems: "center"
+// };
 class PanelContainer extends Component {
 	constructor(props) {
 		super(props);
@@ -49,7 +58,7 @@ class PanelContainer extends Component {
 					<h2 style={headerStyles}>1. Choose model</h2>
 				</Row>
 
-				<Row className="panel-container">
+				<Row className="panel-container" type="flex" align="middle">
 					<Col className="panel-item" span={6}>
 						from
 					</Col>
@@ -62,7 +71,7 @@ class PanelContainer extends Component {
 					</Col>
 				</Row>
 
-				<Row className="panel-container">
+				<Row className="panel-container" type="flex" align="middle">
 					<Col className="panel-item" span={6}>
 						Model
 					</Col>
@@ -82,7 +91,7 @@ class PanelContainer extends Component {
 					<h2 style={headerStyles}>2. Choose dataset</h2>
 				</Row>
 
-				<Row className="panel-container">
+				<Row className="panel-container" type="flex" align="middle">
 					<Col className="panel-item" span={6}>
 						from
 					</Col>
@@ -95,7 +104,20 @@ class PanelContainer extends Component {
 					</Col>
 				</Row>
 
-				<Row className="panel-container" justify="space-around">
+				<Row className="panel-container" type="flex" align="middle">
+					<Col className="panel-item" span={6}>
+						<Text>Metadata search </Text>
+					</Col>
+					<Col span={18} style={rightContainerStyles}>
+						<Search
+							placeholder="ex. FACE DATASET"
+							enterButton="Search"
+							onSearch={value => console.log(value)}
+						/>
+					</Col>
+				</Row>
+
+				<Row className="panel-container" type="flex" align="middle">
 					<Col className="panel-item" span={6}>
 						Dataset
 					</Col>

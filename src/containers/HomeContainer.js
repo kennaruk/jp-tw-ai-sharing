@@ -23,7 +23,14 @@ const datasetOptions = [
 	{ value: "id-5", text: "MONKEY FACE DATASET - 22.6GB", country: "tw" },
 	{ value: "id-6", text: "DOG FACE DATASET - 1.4GB", country: "tw" },
 	{ value: "id-7", text: "CAT FACE DATASET - 98.2GB", country: "tw" },
-	{ value: "id-8", text: "ELEPHANT FACE DATASET - 2.5TB", country: "tw" }
+	{ value: "id-8", text: "ELEPHANT FACE DATASET - 2.5TB", country: "tw" },
+	{ value: "id-9", text: "JAPANESE FRUIT DATASET - 28.0GB", country: "jp" },
+	{ value: "id-10", text: "KOREAN FRUIT DATASET - 20.0GB", country: "jp" },
+	{ value: "id-11", text: "HAWAII FRUIT DATASET - 1.2TB", country: "jp" },
+	{ value: "id-12", text: "S9 FRUIT DATASET - 22.6GB", country: "tw" },
+	{ value: "id-13", text: "D2 FRUIT DATASET - 1.4GB", country: "tw" },
+	{ value: "id-14", text: "C5 FRUIT DATASET - 98.2GB", country: "tw" },
+	{ value: "id-15", text: "E8 FRUIT DATASET - 2.5TB", country: "tw" }
 ];
 class Home extends Component {
 	constructor() {
@@ -137,7 +144,7 @@ class Home extends Component {
 
 		if (modelCountry !== currentLocation)
 			tmpCodes.push(
-				`curl -o ./model.ckpt ${modelCountry}-host:model-${model.value}`
+				`curl -o ./model ${modelCountry}-host:model-${model.value}`
 			);
 
 		//dataset
@@ -152,7 +159,7 @@ class Home extends Component {
 			);
 
 		tmpCodes.push(
-			`docker run -v ./model.ckpt:/etc/models/compute-model.ckpt ./dataset/dataset.tfrecord:/etc/dataset/compute-dataset.tfrecord -d`
+			`docker run -v ./model:/etc/models/compute-model ./dataset/dataset.tfrecord:/etc/dataset/compute-dataset.tfrecord -d`
 		);
 
 		this.setState({
