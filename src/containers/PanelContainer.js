@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, Input, Typography } from "antd";
+import { Row, Col, Input, Typography, Spin } from "antd";
 
 import RadioGroup from "../components/RadioGroup";
 import Dropdown from "../components/Dropdown";
@@ -43,7 +43,20 @@ const rightContainerStyles = {
 class PanelContainer extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			isMetadataLoading: false,
+			metadataSearch: ""
+		};
 	}
+
+	onMetadataSearch = async value => {
+		console.log("value", value);
+		await this.setState({ isMetadataLoading: true, metadataSearch: value });
+		setTimeout(() => {
+			this.setState({ isMetadataLoading: false });
+		}, 1000);
+		// do the filter
+	};
 
 	render() {
 		console.log(this.props);
@@ -109,11 +122,13 @@ class PanelContainer extends Component {
 						<Text>Metadata search </Text>
 					</Col>
 					<Col span={18} style={rightContainerStyles}>
-						<Search
-							placeholder="ex. FACE DATASET"
-							enterButton="Search"
-							onSearch={value => console.log(value)}
-						/>
+						<Spin size="small" spinning={this.state.isMetadataLoading}>
+							<Search
+								placeholder="ex. FACE DATASET, FRUIT DATASET"
+								enterButton="Search"
+								onSearch={this.onMetadataSearch}
+							/>
+						</Spin>
 					</Col>
 				</Row>
 
@@ -126,7 +141,8 @@ class PanelContainer extends Component {
 							<Dropdown
 								placeholder="Select dataset"
 								options={this.props.getDatasetByCountry(
-									this.props.datasetCountry
+									this.props.datasetCountry,
+									this.state.metadataSearch
 								)}
 								width="100%"
 								value={this.props.dataset}

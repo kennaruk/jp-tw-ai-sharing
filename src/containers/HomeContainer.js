@@ -90,9 +90,9 @@ class Home extends Component {
 		return modelOptions.filter(({ country: _country }) => _country === country);
 	};
 
-	getDatasetByCountry = country => {
+	getDatasetByCountry = (country, metadataSearch) => {
 		return datasetOptions.filter(
-			({ country: _country }) => _country === country
+			data => data.country === country && data.text.includes(metadataSearch)
 		);
 	};
 
