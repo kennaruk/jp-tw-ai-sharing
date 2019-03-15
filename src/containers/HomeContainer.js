@@ -92,7 +92,9 @@ class Home extends Component {
 
 	getDatasetByCountry = (country, metadataSearch) => {
 		return datasetOptions.filter(
-			data => data.country === country && data.text.includes(metadataSearch)
+			data =>
+				data.country === country &&
+				data.text.toLowerCase().includes(metadataSearch.toLowerCase())
 		);
 	};
 
