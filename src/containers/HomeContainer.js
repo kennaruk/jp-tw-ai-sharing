@@ -4,6 +4,8 @@ import { Col } from "antd";
 import PanelContainer from "./PanelContainer";
 import ResultContainer from "./ResultContainer";
 
+import { getFormattedTaiwanJSONDATA } from "../utils/dataParser";
+
 const modelOptions = [
 	{ value: "id-1", text: "FACE RECOGNITION - A Type", country: "jp" },
 	{ value: "id-2", text: "FACE RECOGNITION - B Type", country: "jp" },
@@ -15,26 +17,27 @@ const modelOptions = [
 	{ value: "id-8", text: "FACE RECOGNITION - H Type", country: "tw" }
 ];
 
-const datasetOptions = [
+let datasetOptions = [
 	{ value: "id-1", text: "THAI FACE DATASET - 10.0GB", country: "jp" },
 	{ value: "id-2", text: "JAPANESE FACE DATASET - 28.0GB", country: "jp" },
 	{ value: "id-3", text: "KOREAN FACE DATASET - 20.0GB", country: "jp" },
 	{ value: "id-4", text: "HAWAII FACE DATASET - 1.2TB", country: "jp" },
-	{ value: "id-5", text: "MONKEY FACE DATASET - 22.6GB", country: "tw" },
-	{ value: "id-6", text: "DOG FACE DATASET - 1.4GB", country: "tw" },
-	{ value: "id-7", text: "CAT FACE DATASET - 98.2GB", country: "tw" },
-	{ value: "id-8", text: "ELEPHANT FACE DATASET - 2.5TB", country: "tw" },
+	// { value: "id-5", text: "MONKEY FACE DATASET - 22.6GB", country: "tw" },
+	// { value: "id-6", text: "DOG FACE DATASET - 1.4GB", country: "tw" },
+	// { value: "id-7", text: "CAT FACE DATASET - 98.2GB", country: "tw" },
+	// { value: "id-8", text: "ELEPHANT FACE DATASET - 2.5TB", country: "tw" },
 	{ value: "id-9", text: "JAPANESE FRUIT DATASET - 28.0GB", country: "jp" },
 	{ value: "id-10", text: "KOREAN FRUIT DATASET - 20.0GB", country: "jp" },
-	{ value: "id-11", text: "HAWAII FRUIT DATASET - 1.2TB", country: "jp" },
-	{ value: "id-12", text: "S9 FRUIT DATASET - 22.6GB", country: "tw" },
-	{ value: "id-13", text: "D2 FRUIT DATASET - 1.4GB", country: "tw" },
-	{ value: "id-14", text: "C5 FRUIT DATASET - 98.2GB", country: "tw" },
-	{ value: "id-15", text: "E8 FRUIT DATASET - 2.5TB", country: "tw" }
+	{ value: "id-11", text: "HAWAII FRUIT DATASET - 1.2TB", country: "jp" }
+	// { value: "id-12", text: "S9 FRUIT DATASET - 22.6GB", country: "tw" },
+	// { value: "id-13", text: "D2 FRUIT DATASET - 1.4GB", country: "tw" },
+	// { value: "id-14", text: "C5 FRUIT DATASET - 98.2GB", country: "tw" },
+	// { value: "id-15", text: "E8 FRUIT DATASET - 2.5TB", country: "tw" }
 ];
 class Home extends Component {
 	constructor() {
 		super();
+
 		this.state = {
 			status: {
 				location: "JAPAN <Location auto detected>",
@@ -57,9 +60,54 @@ class Home extends Component {
 			dataset: null,
 			loading: false,
 			japanCodes: [],
-			taiwanCodes: []
+			taiwanCodes: [],
+			datasetOptions: [
+				{ value: "id-1", text: "THAI FACE DATASET - 10.0GB", country: "jp" },
+				{
+					value: "id-2",
+					text: "JAPANESE FACE DATASET - 28.0GB",
+					country: "jp"
+				},
+				{ value: "id-3", text: "KOREAN FACE DATASET - 20.0GB", country: "jp" },
+				{ value: "id-4", text: "HAWAII FACE DATASET - 1.2TB", country: "jp" },
+				// { value: "id-5", text: "MONKEY FACE DATASET - 22.6GB", country: "tw" },
+				// { value: "id-6", text: "DOG FACE DATASET - 1.4GB", country: "tw" },
+				// { value: "id-7", text: "CAT FACE DATASET - 98.2GB", country: "tw" },
+				// { value: "id-8", text: "ELEPHANT FACE DATASET - 2.5TB", country: "tw" },
+				{
+					value: "id-9",
+					text: "JAPANESE FRUIT DATASET - 28.0GB",
+					country: "jp"
+				},
+				{
+					value: "id-10",
+					text: "KOREAN FRUIT DATASET - 20.0GB",
+					country: "jp"
+				},
+				{ value: "id-11", text: "HAWAII FRUIT DATASET - 1.2TB", country: "jp" }
+				// { value: "id-12", text: "S9 FRUIT DATASET - 22.6GB", country: "tw" },
+				// { value: "id-13", text: "D2 FRUIT DATASET - 1.4GB", country: "tw" },
+				// { value: "id-14", text: "C5 FRUIT DATASET - 98.2GB", country: "tw" },
+				// { value: "id-15", text: "E8 FRUIT DATASET - 2.5TB", country: "tw" }
+			]
 		};
 	}
+
+	async componentWillMount() {
+		const { datasetOptions } = this.state;
+		const datasetFromTaiwanAPI = await getFormattedTaiwanJSONDATA();
+		console.log("datasetFromTaiwanAPI:", datasetFromTaiwanAPI);
+		this.setState(
+			{
+				datasetOptions: datasetOptions.concat(datasetFromTaiwanAPI)
+			},
+			() => {
+				this.forceUpdate();
+			}
+		);
+		console.log("datasetOptions:", datasetOptions);
+	}
+
 	//RadioButton Handler
 	onModelCountryChange = event => {
 		const modelCountry = event.target.value;
@@ -91,6 +139,8 @@ class Home extends Component {
 	};
 
 	getDatasetByCountry = (country, metadataSearch) => {
+		const { datasetOptions } = this.state;
+
 		return datasetOptions.filter(
 			data =>
 				data.country === country &&
@@ -100,6 +150,8 @@ class Home extends Component {
 
 	//Button Handler
 	onGenerateSubmit = async event => {
+		const { datasetOptions } = this.state;
+
 		await this.setState({ generateLoading: true });
 		setTimeout(async () => {
 			const model = modelOptions.find(
