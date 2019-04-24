@@ -7,14 +7,14 @@ import ResultContainer from "./ResultContainer";
 import { getFormattedTaiwanJSONDATA } from "../utils/dataParser";
 
 const modelOptions = [
-	{ value: "id-1", text: "FACE RECOGNITION - A Type", country: "jp" },
-	{ value: "id-2", text: "FACE RECOGNITION - B Type", country: "jp" },
-	{ value: "id-3", text: "FACE RECOGNITION - C Type", country: "jp" },
-	{ value: "id-4", text: "FACE RECOGNITION - D Type", country: "jp" },
-	{ value: "id-5", text: "FACE RECOGNITION - E Type", country: "tw" },
-	{ value: "id-6", text: "FACE RECOGNITION - F Type", country: "tw" },
-	{ value: "id-7", text: "FACE RECOGNITION - G Type", country: "tw" },
-	{ value: "id-8", text: "FACE RECOGNITION - H Type", country: "tw" }
+	{ value: "id-1", text: "IMAGE RECOGNITION - A Type", country: "jp" },
+	{ value: "id-2", text: "IMAGE RECOGNITION - B Type", country: "jp" },
+	{ value: "id-3", text: "IMAGE RECOGNITION - C Type", country: "jp" },
+	{ value: "id-4", text: "IMAGE RECOGNITION - D Type", country: "jp" },
+	{ value: "id-5", text: "IMAGE RECOGNITION - E Type", country: "tw" },
+	{ value: "id-6", text: "IMAGE RECOGNITION - F Type", country: "tw" },
+	{ value: "id-7", text: "IMAGE RECOGNITION - G Type", country: "tw" },
+	{ value: "id-8", text: "IMAGE RECOGNITION - H Type", country: "tw" }
 ];
 
 let datasetOptions = [
